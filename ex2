@@ -1,0 +1,45 @@
+//metoda combinarii
+#include &lt;iostream&gt;
+#include &lt;string.h&gt;
+using namespace std;
+int n, v[20], p, a;
+bool valid(int k) {
+for (int i = 1; i &lt;= k - 1; i++)
+if (v[i] == v[k]) return false;
+return true;
+}
+bool solutie(int k) {
+if (k == p) return true;
+return false;
+}
+void afisare(int k) {
+int s = 0;
+for (int i = 1; i &lt;= k; i++)
+s = s + v[i];
+if (s == n) {
+a++;
+for (int i = 1; i &lt;= k; i++)
+cout &lt;&lt; &quot; &quot; &lt;&lt; v[i];
+cout &lt;&lt; &quot;\n&quot;;
+};
+}
+void BK(int k) {
+for (int i = v[k - 1] + 1; i &lt;= n; i++) {
+v[k] = i;
+if (valid(k)) {
+if (solutie(k))
+afisare(k);
+else BK(k + 1);
+}
+}
+}
+int main() {
+cout &lt;&lt; &quot;n =&quot;;
+cin &gt;&gt; n;
+cout &lt;&lt; &quot;p =&quot;;
+cin &gt;&gt; p;
+BK(1);
+cout &lt;&lt; &quot; ,&quot; &lt;&lt; p;
+return 0;
+
+}
